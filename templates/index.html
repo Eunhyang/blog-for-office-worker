@@ -6,24 +6,26 @@
 <div style="color:red;">hello world, scott</div> -->
 
 <div class="container">
-  <div class="col-xs-6">
-    <div class="colorful-text">
-      <div>hello world, joe</div>
-      <div>hello world, scott</div>
-    </div>
+  <div class="blog-header">
+      <h1 class="blog-title">Eunhyang Blog</h1>
+      <p class="lead blog-description">Fisrt blog</p>
   </div>
-  <div class="col-xs-6">
-    {% for article in article_list %}
-      <div>
-        {{ article.title }}
-        <span class="label label-default">{{ article.view_count }}</span>
+  <div class="row">
+    <div class="col-sm-8 blog-main">
+      <div class="blog-post">
+        {% for article in article_list %}
+        <div class="index-list">
+          <div class="index-title">
+             <h3 class="blog-post-title" style="display:inline;"><a href="/{{article.id}}/">{{article.title}}</a></h3>
+            <div class="blog-post-date">{{article.created_date}}</div> 
+          </div>
+          <div class="index-content">{{article.content}}</div>
+          <i class="fa fa-arrow-right more" aria-hidden="true"></i><a class="more" href="/{{article.id}}/">&nbsp;Read more</a>
+        </div>
+        {% endfor %}
       </div>
-    {% endfor %}
-  </div>
-  <div class="col-xs-12">
-    <i class="fa fa-stop" aria-hidden="true"></i>
-    <i class="fa fa-play" aria-hidden="true"></i>
-    <i class="fa fa-play fa-spin" aria-hidden="true"></i>
+    </div><!-- /.row -->
+    {% include "sidebar.html" %}
   </div>
 </div>
 {% endblock %}

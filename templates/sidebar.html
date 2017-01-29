@@ -1,0 +1,20 @@
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ol class="list-unstyled">
+      <li><a href="/">all</a></li>
+      {% for alias, category in category_list %}
+      <li><a href="/?category={{ alias }}">{{ category }}</a></li>
+      {% endfor %}
+    </ol>
+  </div>
+  <div class="sidebar-module">
+    <h4>Hashtag</h4>
+    <ol class="list-unstyled">
+      <li><a href="/">all</a></li>
+      {% for hashtag in hashtag_list %}
+        <li><a href="/?hashtag={{ hashtag.name }}">#{{ hashtag.name }}</a></li>
+      {% endfor %}
+    </ol>
+  </div>
+</div><!-- /.blog-sidebar -->

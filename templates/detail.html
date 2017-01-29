@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block body %}
+<!-- <div style="color:red; font-size:2em;">hello world, {{ name }}</div>
+<div style="color:#123456;">hello world, joe</div>
+<div style="color:red;">hello world, scott</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 blog-main">
+      <div class="detail-blog-post">
+        <h3 class="blog-post-title">{{article.title}}</h3>
+        <div class="blog-post-date">{{article.created_date}}</div> 
+        <h5 style="color:#555555;">{{article.sub_title}}</h5>
+        <div class="blog-post-content">{{article.content}}</div>
+      </div>
+      <div class="detail-comment-list">
+        <div>
+          <i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;<h5 style="display:inline;">Response</h5>
+          <span class="comment-count">{{ article.approved_comments.count }}</span>
+        </div>
+        {% for comment in article.article_comments.all %}
+          {% if comment.approved_comment %}
+            <div class="detail-comment">
+                <div style="font-size:8.5pt; color:#2584d6;">{{comment.username}} &nbsp;&nbsp;<span class="comment-date">{{comment.created_date}}</span></div>
+              <div style="font-size:11pt; padding-top:5px;">{{comment.comment}}</div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        <div class="reply-form">
+          <form method="post" action="" class="form-horizontal">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" name="username" class="form-control" placeholder="Username" />
+                <textarea name="comment" class="form-control" rows="3" placeholder="Content"></textarea>
+              <button type="submit" class="btn btn-default detail-submit">댓글달기</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-needbox"></div>
+    {% include "sidebar.html" %}
+    </div><!-- /.row -->
+</div>
+{% endblock %}
